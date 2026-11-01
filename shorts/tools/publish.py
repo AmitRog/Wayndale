@@ -76,7 +76,12 @@ def main():
     ap.add_argument('--slot', choices=['auto'])
     ap.add_argument('--platforms', default='youtube,instagram,tiktok')
     ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--host-only', action='store_true', help='only push the MP4 to the renders branch and print its URL')
     a = ap.parse_args()
+    if a.host_only:
+        mp4 = SHORTS / 'out' / f'{a.id}.mp4'
+        print(host(mp4, f'{a.id}.mp4', a.dry_run))
+        return
 
     meta = json.loads((SHORTS / 'src' / 'episodes' / a.id / 'meta.json').read_text())
     mp4 = SHORTS / 'out' / f'{a.id}.mp4'
