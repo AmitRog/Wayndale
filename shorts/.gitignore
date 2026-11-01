@@ -1,0 +1,8 @@
+node_modules/
+build/
+out/
+.cache/
+*.log
+__pycache__/
+# raw generation downloads stay out of git (prompts.md + final sprites are kept)
+episodes-src/*/raw/
