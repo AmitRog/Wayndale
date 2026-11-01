@@ -15,7 +15,9 @@ const CamCtx = createContext<Cam>({x: 540, y: 960, z: 0, r: 0});
 export const useCam = () => useContext(CamCtx);
 
 /** Camera from keyframes. Zoom is interpolated in log-scale space so pushes feel even. */
-export function camAt(t: number, keys: CamKey[]): Cam {
+export function camAt(t: number, keysIn: CamKey[]): Cam {
+  // keys anchored to fast speech can land out of order – sort so the camera never jumps backwards
+  const keys = [...keysIn].sort((a, b) => a.t - b.t);
   if (keys.length === 0) return {x: 540, y: 960, z: 0};
   if (t <= keys[0].t) return {...keys[0]};
   for (let i = 1; i < keys.length; i++) {

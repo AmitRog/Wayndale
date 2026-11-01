@@ -153,6 +153,35 @@ def rumble():
     return onepole_lp(rs.standard_normal(len(t)), 110) * np.minimum(1, t / 0.3) * np.minimum(1, (1.8 - t) / 0.5)
 
 
+def beep(f=1760, dur=0.14):
+    t = t_axis(dur)
+    return (np.sin(2 * np.pi * f * t) + 0.25 * np.sin(2 * np.pi * 2 * f * t)) * np.minimum(1, t / 0.005) * np.minimum(1, (dur - t) / 0.02)
+
+
+def buzz():
+    t = t_axis(0.32)
+    x = np.sign(np.sin(2 * np.pi * 120 * t)) * 0.6 + np.sin(2 * np.pi * 240 * t) * 0.4
+    return onepole_lp(x, 1800) * np.minimum(1, t / 0.01) * np.minimum(1, (0.32 - t) / 0.03)
+
+
+def hiss():
+    t = t_axis(0.8)
+    x = rs.standard_normal(len(t))
+    x = x - onepole_lp(x, 3000)  # high-pass
+    return x * np.minimum(1, t / 0.05) * np.exp(-np.maximum(0, t - 0.1) * 3)
+
+
+def snip():
+    out = np.zeros(int(SR * 0.16))
+    for k, at in enumerate((0.0, 0.07)):
+        t = t_axis(0.05)
+        c = (rs.standard_normal(len(t)) - onepole_lp(rs.standard_normal(len(t)), 2000)) * np.exp(-t * 120)
+        c += 0.4 * np.sin(2 * np.pi * (3200 + 600 * k) * t) * np.exp(-t * 80)
+        n = int(SR * at)
+        out[n : n + len(c)] += c
+    return out
+
+
 SFX = {
     'whoosh': lambda: whoosh(0.5),
     'swish': lambda: whoosh(0.28, 900, 6000),
@@ -171,6 +200,10 @@ SFX = {
     'squeak': squeak,
     'step': step,
     'rumble': rumble,
+    'beep': beep,
+    'buzz': buzz,
+    'hiss': hiss,
+    'snip': snip,
 }
 
 

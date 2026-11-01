@@ -91,3 +91,12 @@ await renderMedia({
   },
 });
 console.log(`rendered ${out} in ${((Date.now() - t1) / 1000).toFixed(1)}s`);
+if (!preview && !fr) {
+  // final renders: normalise loudness for Shorts (-14 LUFS, true peak <= -1.5 dBTP)
+  const {execFileSync} = await import('node:child_process');
+  try {
+    console.log(execFileSync('python3', ['-I', path.join(root, 'tools/loudnorm.py'), out], {encoding: 'utf8'}).trim());
+  } catch (e) {
+    console.warn('loudnorm skipped:', e.message);
+  }
+}

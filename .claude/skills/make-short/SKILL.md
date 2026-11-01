@@ -54,7 +54,12 @@ python3 -I tools/tts_elevenlabs.py --text-file src/episodes/<ID>/script.txt \
 ```
 - First episode ever: run `--list-voices`, pick a natural conversational male voice (not deep, not a
   narrator), write `channel/voice.json` = `{"voice": "<name>", "voice_id": "<id>", "model": "<model>"}`.
-- Listen-check by reading words.json: the timings must cover the whole script; total ≈ 15–30 s.
+- Model `eleven_v4` (default; returns exact word timings). Plain text, no tags.
+- Whisper-style check: `python3 -I tools/voice_qa.py public/episodes/<ID>/vo.mp3 src/episodes/<ID>/script.txt`
+  transcribes the take (ElevenLabs Scribe) and diffs it against the script; regenerate the take if it
+  reports > 8 % word errors. (Needs the key's "Speech to Text" permission; if it says missing permission,
+  skip it and note that in the handoff.)
+- Read words.json: the timings must cover the whole script; total ≈ 15–30 s.
 - Done = vo.mp3 + words.json; composition duration = last word end + 0.1 (voice offset) + ~0.8 s.
 
 ## 4. Beat sheet (5 min) – write it as the comment block at the top of Episode.tsx

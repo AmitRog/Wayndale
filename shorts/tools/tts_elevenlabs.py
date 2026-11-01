@@ -96,7 +96,7 @@ def main():
     ap.add_argument('--list-voices', action='store_true')
     ap.add_argument('--text-file')
     ap.add_argument('--voice', default='Chris')
-    ap.add_argument('--model', default='eleven_multilingual_v2')
+    ap.add_argument('--model', default='eleven_v4')
     ap.add_argument('--stability', type=float, default=0.45)
     ap.add_argument('--similarity', type=float, default=0.8)
     ap.add_argument('--style', type=float, default=0.15)

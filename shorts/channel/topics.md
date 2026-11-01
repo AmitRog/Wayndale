@@ -30,7 +30,7 @@ Pick the next `idea` whose category differs from the last episode's. Add new ide
 | 21 | idea | everyday | Why pencils have six sides | Hexagons don't roll off desks and pack efficiently in manufacturing | | |
 | 22 | idea | streets | Why power lines sag | Slack allows for thermal expansion and limits tension | | |
 | 23 | idea | safety | Why fire hydrants have pentagon-shaped nuts | Needs a special wrench, discouraging tampering | | |
-| 24 | in-progress | everyday | What the coloured square on toothpaste tubes means | An eye mark for the factory's cutting/sealing sensor – not the ingredients | | |
+| 24 | review | everyday | What the coloured square on toothpaste tubes means | An eye mark for the factory's cutting/sealing sensor – not the ingredients | 2026-11-01 | E001 "What the Square on Your Toothpaste Really Means" |
 | 25 | idea | transport | Why airplane tyres are filled with nitrogen | Dry, inert gas keeps pressure stable and won't feed a fire | | |
 | 26 | idea | transport | Why school buses are yellow | A 1939 conference picked the colour most visible in peripheral vision | | |
 | 27 | idea | energy | Why wind turbines have three blades | Best balance of efficiency, cost and smooth, wobble-free spinning | | |

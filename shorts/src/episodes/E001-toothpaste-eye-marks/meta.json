@@ -1,0 +1,17 @@
+{
+  "id": "E001-toothpaste-eye-marks",
+  "title": "What the Square on Your Toothpaste Really Means",
+  "description": "That coloured square isn't an ingredient code. It's an eye mark: a light sensor on the filling line spots it so the machine knows where to crimp and seal the tube. The ingredients are printed on the box.\nSources: https://www.colgate.com/en-us/oral-health/selecting-dental-products/what-is-a-toothpaste-color-code · https://www.mentalfloss.com/article/630094/what-the-color-codes-on-toothpaste-tubes-mean\n#shorts #engineering #howitworks",
+  "tags": ["toothpaste", "toothpaste color code", "eye mark", "manufacturing", "engineering", "how it works", "myth busting"],
+  "sources": [
+    "https://www.colgate.com/en-us/oral-health/selecting-dental-products/what-is-a-toothpaste-color-code",
+    "https://www.mentalfloss.com/article/630094/what-the-color-codes-on-toothpaste-tubes-mean",
+    "https://blackdotresearch.sg/do-the-coloured-blocks-at-the-bottom-of-toothpaste-tubes-reveal-secrets-about-toothpaste-content/",
+    "https://www.thip.media/health-news-fact-check/fact-check-toothpaste-colour-code-meaning/21021/",
+    "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/5471819",
+    "https://www.manufacturing.net/home/press-release/13153565/i-spy-151filling-prospers-from-vision-system"
+  ],
+  "voice": "Chris (eleven_v4)",
+  "duration": 23.6,
+  "credits": {"higgsfield": 0, "elevenlabs_chars": 369}
+}
