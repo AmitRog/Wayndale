@@ -24,8 +24,12 @@ curl -s -o /dev/null -w "%{http_code}\n" https://api.elevenlabs.io/v1/models   #
 - Done = typecheck passes; you know whether voice and image generation are available.
 
 ## 1. Topic (5 min)
-- Open `shorts/channel/topics.md`. Take the first `idea` whose category differs from the last produced one.
-  Set it to `in-progress`.
+- **First check the queue**: the oldest file in `shorts/channel/queue/` with `status: approved` is your episode
+  (script, visual concept, sources and description are already written and fact-checked). Claim it at once:
+  set `status: in-production`, commit, `git pull --rebase`, push – so a parallel run can't take the same one.
+  Re-read the sources quickly; then skip to step 3 (keep the queued script unless something is wrong).
+- Queue empty → open `shorts/channel/topics.md`, take the first `idea` whose category differs from the last
+  produced one, set it to `in-progress`, commit + push to claim it.
 - Research it on the web: confirm the central claim in **2+ reliable sources** (university, standards body,
   manufacturer, government, museum, established encyclopedia/science outlet). If it is a myth or too
   shaky, mark `rejected` with a one-line reason and take the next one.
@@ -61,6 +65,8 @@ python3 -I tools/tts_elevenlabs.py --text-file src/episodes/<ID>/script.txt \
 - Few hard cuts: continuous camera moves; a cut/wipe only for a new idea (blueprint in/out).
 
 ## 5. Props and set
+- Reuse first: `src/library/` holds props/sets from earlier episodes. Generic things you draw (car, door,
+  tree, table, building…) go into `src/library/` so the next episode can reuse them.
 - Default: draw props in code (`src/episodes/<ID>/props.tsx`) in the house style: `C.ink` outlines
   (10 px main, 4–7 px details), flat fills from `C`, one soft shade, centred on (0, 0). Look at E000's
   `SquareCover` / `RoundCover` for the level of detail.
@@ -119,7 +125,10 @@ node scripts/render.mjs <ID> --preview && python3 -I tools/qa.py out/<ID>-previe
 - Write `src/episodes/<ID>/meta.json`:
   `{"id", "title", "description", "tags": [], "sources": [], "voice", "duration", "credits": {"higgsfield": n, "elevenlabs_chars": n}}`
   following the BIBLE title/description rules.
-- Update `channel/topics.md` (status `review`, date, title) and append to `channel/ledger.csv`.
+- Update `channel/topics.md` (status `review`, date, title), set the queue file to `status: produced`,
+  and append to `channel/ledger.csv`.
+- Always `git pull --rebase` before pushing (other runs may have pushed); resolve conflicts in the
+  append-only files (topics.md, ledger.csv, episodes/index.ts) by keeping both sides.
 - Commit source files (never `out/`, `build/`, `node_modules/`, API keys) and push to the working branch.
 - Send the MP4 to the owner with `SendUserFile` (display: render) and, in the reply, the title,
   description, sources and anything you were unsure about. Ask: approve / change something / reject.
