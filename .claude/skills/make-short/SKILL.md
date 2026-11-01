@@ -20,7 +20,9 @@ curl -s -o /dev/null -w "%{http_code}\n" https://api.elevenlabs.io/v1/models   #
 ```
 - No key or host blocked → produce the episode anyway with estimated timings (`tools/est_words.py`), mark it
   **DRAFT – no voice** in the handoff, and tell the owner exactly what is missing. Never invent a voice file.
-- If the episode needs AI props: check Higgsfield credits with the `balance` tool (budget ≤ 8 credits/episode).
+- Higgsfield (AI props) is optional: scheduled runs usually have no connector tools, so draw everything in
+  code unless the `mcp__Higgsfield__*` tools are present (then budget ≤ 8 credits/episode, check `balance`).
+  Downloads from Higgsfield need `d8j0ntlcm91z4.cloudfront.net` in the environment's allowed domains.
 - Done = typecheck passes; you know whether voice and image generation are available.
 
 ## 1. Topic (5 min)
@@ -134,7 +136,12 @@ node scripts/render.mjs <ID> --preview && python3 -I tools/qa.py out/<ID>-previe
   description, sources and anything you were unsure about. Ask: approve / change something / reject.
 - Do NOT upload or publish anything without the owner's explicit approval in this conversation.
 
-## 10. After approval
-- Publishing is done through the owner's Make.com YouTube scenario (see `shorts/PUBLISHING.md`).
-  If it isn't set up yet, give the owner the title/description to paste and the file to upload.
-- Then set the topic to `published` with the link.
+## 10. After approval (only on the owner's explicit "approve" for this exact video)
+```bash
+python3 -I tools/publish.py <ID> --slot auto      # or --publish-at 2026-11-03T22:00:00Z
+```
+- Hosts the MP4 on the `renders` branch (raw GitHub URL), books the next free slot (17:00 / 22:00 UTC) in
+  `channel/schedule.json`, and POSTs title/description/tags/time to the owner's Make scenario
+  (`MAKE_PUBLISH_WEBHOOK` env secret), which uploads to YouTube Shorts + Instagram Reels (+ TikTok).
+- Missing webhook → give the owner the file + title/description to upload by hand instead.
+- Commit `channel/schedule.json`; set the topic to `published` with the link once Make reports it.
