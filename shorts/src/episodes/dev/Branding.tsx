@@ -54,3 +54,27 @@ export const Banner: React.FC = () => (
     </At>
   </Frame>
 );
+
+/** 1640x924 Facebook Page cover; key content inside the central ~1200x500 (mobile crop). */
+export const FbCover: React.FC = () => (
+  <Frame>
+    <AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 50%, ${C.bp} 0%, ${C.bpDeep} 100%)`}} />
+    <Grid w={1640} h={924} step={56} />
+    <svg width={1640} height={924} style={{position: 'absolute'}}>
+      <g stroke={C.bpAccent} strokeWidth={5} strokeLinecap="round" opacity={0.9}>
+        <line x1={680} y1={560} x2={1340} y2={560} />
+        <line x1={680} y1={542} x2={680} y2={578} />
+        <line x1={1340} y1={542} x2={1340} y2={578} />
+      </g>
+      <text x={1015} y={455} textAnchor="middle" fontFamily={FONT} fontWeight={700} fontSize={104} fill={C.white} stroke={C.ink} strokeWidth={18} paintOrder="stroke" strokeLinejoin="round">
+        Built This Way
+      </text>
+      <text x={1015} y={530} textAnchor="middle" fontFamily={FONT} fontWeight={500} fontSize={38} fill={C.bpAccent} stroke={C.bpDeep} strokeWidth={8} paintOrder="stroke">
+        the hidden engineering behind everyday things
+      </text>
+    </svg>
+    <At x={420} y={650}>
+      <Mascot pose={{...BASE_POSE, ...EXPR.happy, ...ARMS.point, turn: 0.5, lookX: 0.8, fx: 110, fy: -60}} scale={0.74} />
+    </At>
+  </Frame>
+);
