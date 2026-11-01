@@ -40,6 +40,10 @@ def call(method, path, body=None):
             return json.loads(r.read())
     except urllib.error.HTTPError as e:
         msg = e.read()[:400]
+        if b'quota_exceeded' in msg:
+            sys.exit('ElevenLabs: out of characters (quota_exceeded). The owner needs to add credits / upgrade the '
+                     'API plan at https://elevenlabs.io/app/subscription. Until then use est_words.py timings and '
+                     'mark the episode DRAFT – no voice.')
         if e.code in (401, 403):
             sys.exit(f'ElevenLabs refused the request (HTTP {e.code}): {msg!r}\n{HINT}')
         sys.exit(f'ElevenLabs HTTP {e.code}: {msg!r}')
