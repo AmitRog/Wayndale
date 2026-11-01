@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Voice-over + exact word timings from ElevenLabs in one call (no Whisper needed).
 
-Needs env var ELEVENLABS_API_KEY and network access to api.elevenlabs.io.
+Auth, either way works:
+  - preferred: an environment *network secret* for api.elevenlabs.io that injects the header
+    `xi-api-key: <key>` (the key never reaches this code), or
+  - env var ELEVENLABS_API_KEY.
 
+  python3 -I tools/tts_elevenlabs.py --check          # is the API reachable + authorised?
   python3 -I tools/tts_elevenlabs.py --list-voices
   python3 -I tools/tts_elevenlabs.py --text-file script.txt --voice "Chris" \
       --out public/episodes/<slug>/vo.mp3 --words src/episodes/<slug>/words.json
@@ -20,17 +24,32 @@ import urllib.request
 API = 'https://api.elevenlabs.io/v1'
 
 
+HINT = ('Add a network secret for api.elevenlabs.io with header "xi-api-key" (no prefix) in the environment '
+        'settings, or set ELEVENLABS_API_KEY. Never paste keys into chat. New sessions pick it up.')
+
+
 def call(method, path, body=None):
+    headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
     key = os.environ.get('ELEVENLABS_API_KEY')
-    if not key:
-        sys.exit('ELEVENLABS_API_KEY is not set (add it in the environment settings, not in chat).')
-    req = urllib.request.Request(API + path, method=method, headers={'xi-api-key': key, 'Content-Type': 'application/json', 'Accept': 'application/json'})
+    if key:
+        headers['xi-api-key'] = key  # otherwise the egress proxy injects it (network secret)
+    req = urllib.request.Request(API + path, method=method, headers=headers)
     data = json.dumps(body).encode() if body is not None else None
     try:
         with urllib.request.urlopen(req, data=data, timeout=180) as r:
             return json.loads(r.read())
     except urllib.error.HTTPError as e:
-        sys.exit(f'ElevenLabs HTTP {e.code}: {e.read()[:500]!r}')
+        msg = e.read()[:400]
+        if e.code in (401, 403):
+            sys.exit(f'ElevenLabs refused the request (HTTP {e.code}): {msg!r}\n{HINT}')
+        sys.exit(f'ElevenLabs HTTP {e.code}: {msg!r}')
+    except urllib.error.URLError as e:
+        sys.exit(f'Cannot reach api.elevenlabs.io ({e.reason}). {HINT}')
+
+
+def check():
+    info = call('GET', '/user/subscription')
+    print(f"ElevenLabs OK – tier {info.get('tier')}, characters used {info.get('character_count')}/{info.get('character_limit')}")
 
 
 def list_voices():
@@ -69,6 +88,7 @@ def words_from_alignment(al):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument('--check', action='store_true')
     ap.add_argument('--list-voices', action='store_true')
     ap.add_argument('--text-file')
     ap.add_argument('--voice', default='Chris')
@@ -80,6 +100,8 @@ def main():
     ap.add_argument('--out')
     ap.add_argument('--words')
     a = ap.parse_args()
+    if a.check:
+        return check()
     if a.list_voices:
         return list_voices()
     text = open(a.text_file).read().strip()

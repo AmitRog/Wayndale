@@ -15,10 +15,9 @@ mid-run – choose sensible defaults and report them at the end.
 ## 0. Preflight (2 min)
 ```bash
 cd shorts && (test -d node_modules || npm ci) && npx tsc --noEmit
-test -n "$ELEVENLABS_API_KEY" && echo "voice key ok" || echo "NO VOICE KEY"
-curl -s -o /dev/null -w "%{http_code}\n" https://api.elevenlabs.io/v1/models   # 401 = reachable, 000/403 = blocked
+python3 -I tools/tts_elevenlabs.py --check   # "ElevenLabs OK – tier …" or a clear reason
 ```
-- No key or host blocked → produce the episode anyway with estimated timings (`tools/est_words.py`), mark it
+- Voice check fails → produce the episode anyway with estimated timings (`tools/est_words.py`), mark it
   **DRAFT – no voice** in the handoff, and tell the owner exactly what is missing. Never invent a voice file.
 - Higgsfield (AI props) is optional: scheduled runs usually have no connector tools, so draw everything in
   code unless the `mcp__Higgsfield__*` tools are present (then budget ≤ 8 credits/episode, check `balance`).
