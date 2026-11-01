@@ -83,7 +83,7 @@ def main():
                 print(json.dumps(t.get('inputSchema'), indent=1)[:6000])
     elif sys.argv[1] == 'call':
         text, _ = m.call(sys.argv[2], json.loads(sys.argv[3]) if len(sys.argv) > 3 else {})
-        print(text[:20000])
+        print(text)
     else:
         sys.exit(__doc__)
 

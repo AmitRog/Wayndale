@@ -63,7 +63,18 @@ Audience: curious adults and teens, US/UK first, no prior knowledge needed.
 - SFX on every action (whoosh on throws, pop on appear, clang/thud on impacts), quiet under the voice;
   big sounds go into pauses. No music for now.
 
-## Titles, descriptions, tags
+## Titles, descriptions, tags (per platform – stored in meta.json)
+- YouTube: title ≤ 55 chars (the question or the surprising answer); description = 2–3 sentence answer,
+  `Sources:` with 2–3 named links, the channel line, then 3–5 hashtags starting with #shorts;
+  15–20 tags (total < 500 chars): topic words people search ("toothpaste color code"), the object,
+  the category, myth/how-it-works phrasing, plus "engineering", "how it works", "Built This Way".
+  Category Education (27), language en, not made for kids.
+- Instagram: hook line + one-sentence answer + "Follow for the hidden engineering behind everyday things 🔧"
+  + 6–8 hashtags (topic + #engineering #howitworks #science #didyouknow #learnonreels).
+- Facebook: same as Instagram with 3–4 hashtags. TikTok: ≤ 150 chars, hook + answer + 3–4 hashtags
+  incl. #learnontiktok.
+
+## Titles, descriptions, tags (general rules)
 - Title ≤ 55 characters, the question or a curiosity statement, no false clickbait:
   "Why Manhole Covers Are Round", "The Tiny Hole That Stops Gas Pumps".
 - Description: 1–2 plain sentences with the answer, then `Sources:` with 1–3 links, then

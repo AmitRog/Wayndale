@@ -1,5 +1,17 @@
 # Publishing (approval → YouTube Shorts + Instagram Reels + TikTok)
 
+## Current routing (2026-11-01, after testing)
+| Platform | Route | Status |
+|---|---|---|
+| YouTube | Make.com YouTube app (verified Google app) | waiting for the owner's YouTube connection in Make |
+| YouTube (fallback) | Composio `YOUTUBE_MULTIPART_UPLOAD_VIDEO` | unreliable: Composio's shared Google project hit its daily video-upload quota (HTTP 429, 966/day for all Composio users) |
+| Instagram Reels | Composio Connect (`tools/composio_mcp.py`): `INSTAGRAM_POST_IG_USER_MEDIA` (REELS, video_url) → `INSTAGRAM_POST_IG_USER_MEDIA_PUBLISH` | connected (creator account) |
+| Facebook Page | Composio: `FACEBOOK_CREATE_VIDEO_POST` (page_id, file_url) | needs the Built This Way page + re-connect |
+| TikTok | Higgsfield TikTok (owner confirms each post) or manual | not connected yet |
+
+Per-video metadata lives in `src/episodes/<ID>/meta.json` under `youtube` / `instagram` / `facebook` / `tiktok`
+(see the BIBLE's SEO rules). Videos are fetched from the public `renders` branch URL (`tools/publish.py --host-only`).
+
 Status: **waiting for owner setup** (YouTube channel + Make connections + webhook secret).
 
 ## Flow (no MCP connectors needed – works from scheduled runs)

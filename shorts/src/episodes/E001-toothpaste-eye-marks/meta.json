@@ -1,8 +1,44 @@
 {
   "id": "E001-toothpaste-eye-marks",
   "title": "What the Square on Your Toothpaste Really Means",
-  "description": "That coloured square isn't an ingredient code. It's an eye mark: a light sensor on the filling line spots it so the machine knows where to crimp and seal the tube. The ingredients are printed on the box.\nSources: https://www.colgate.com/en-us/oral-health/selecting-dental-products/what-is-a-toothpaste-color-code · https://www.mentalfloss.com/article/630094/what-the-color-codes-on-toothpaste-tubes-mean\n#shorts #engineering #howitworks",
-  "tags": ["toothpaste", "toothpaste color code", "eye mark", "manufacturing", "engineering", "how it works", "myth busting"],
+  "youtube": {
+    "title": "What the Square on Your Toothpaste Really Means",
+    "description": "That colored square on your toothpaste tube isn't an ingredient code. It's an eye mark: on the filling line, a light sensor spots it so the machine knows exactly where to crimp and seal the tube. The color only has to stand out from the tube. The ingredients? They're printed on the box.\n\nSources:\n• Colgate – What is a toothpaste color code: https://www.colgate.com/en-us/oral-health/selecting-dental-products/what-is-a-toothpaste-color-code\n• Mental Floss – What the color codes on toothpaste tubes really mean: https://www.mentalfloss.com/article/630094/what-the-color-codes-on-toothpaste-tubes-mean\n• US patent – method and device for filling tubes (tubes are turned into position before sealing): https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/5471819\n\nBuilt This Way – the hidden engineering behind everyday things. New Shorts every day.\n\n#shorts #engineering #howitworks #toothpaste #mythbusting",
+    "tags": [
+      "toothpaste",
+      "toothpaste color code",
+      "toothpaste squares meaning",
+      "colored square on toothpaste",
+      "eye mark",
+      "toothpaste myth",
+      "how toothpaste is made",
+      "manufacturing",
+      "factory",
+      "packaging",
+      "engineering",
+      "how it works",
+      "hidden engineering",
+      "everyday science",
+      "science facts",
+      "myth busting",
+      "did you know",
+      "Built This Way",
+      "shorts"
+    ],
+    "categoryId": "27",
+    "defaultLanguage": "en",
+    "madeForKids": false
+  },
+  "instagram": {
+    "caption": "The colored square on your toothpaste isn't a secret ingredient code 🪥\nIt's an eye mark: a light sensor on the factory line spots it so the machine knows where to crimp and seal the tube.\n\nFollow for the hidden engineering behind everyday things 🔧\n\n#engineering #howitworks #toothpaste #mythbusting #manufacturing #science #didyouknow #learnonreels"
+  },
+  "facebook": {
+    "title": "What the Square on Your Toothpaste Really Means",
+    "description": "The colored square on your toothpaste isn't a secret ingredient code. It's an eye mark: a light sensor on the factory line spots it so the machine knows where to crimp and seal the tube. 🔧\n\n#engineering #howitworks #toothpaste #mythbusting"
+  },
+  "tiktok": {
+    "caption": "The square on your toothpaste isn't an ingredient code 🪥 It's an eye mark for the factory sensor. #engineering #howitworks #mythbusting #learnontiktok"
+  },
   "sources": [
     "https://www.colgate.com/en-us/oral-health/selecting-dental-products/what-is-a-toothpaste-color-code",
     "https://www.mentalfloss.com/article/630094/what-the-color-codes-on-toothpaste-tubes-mean",
@@ -13,5 +49,8 @@
   ],
   "voice": "Chris (eleven_v4)",
   "duration": 23.6,
-  "credits": {"higgsfield": 0, "elevenlabs_chars": 369}
+  "credits": {
+    "higgsfield": 0,
+    "elevenlabs_chars": 369
+  }
 }
