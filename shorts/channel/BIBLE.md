@@ -12,9 +12,15 @@ everyday objects · safety features · ancient engineering · accidental inventi
 
 Audience: curious adults and teens, US/UK first, no prior knowledge needed.
 
-## Channel name (working title until the owner picks)
-Options: **Built This Way** · **Hardy Explains** · **The Hidden Why** · **Secretly Engineered** · **Nuts & Whys**.
-Check the @handle is free when creating the channel.
+## Channel name
+**Built This Way** (chosen by the owner, 2026-11-01). Mascot: Hardy.
+
+## Cadence & distribution
+- 2 Shorts per day (morning + evening US time); revisit after two weeks of data (3/day if quality holds).
+- Every approved Short goes to **YouTube Shorts**, **TikTok** and **Instagram Reels** (same file, same
+  title; hashtags adapted per platform).
+- Weekly writers' room (`plan-week`) fills `channel/queue/`; production runs (`make-short`) animate the
+  oldest approved script. The owner approves scripts weekly and videos before publishing.
 
 ## The mascot: Hardy
 - Teal bean with a yellow hard hat (drawn in code: `src/engine/mascot/`). Never redraw or restyle him.
