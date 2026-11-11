@@ -58,7 +58,8 @@
   .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 7px; background: var(--c); box-shadow: 0 0 9px var(--c); vertical-align: -1px; }
   .row { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
   @media (max-width: 720px) { .sector { grid-template-columns: 1fr; gap: 6px; } .sector h3 { padding-top: 4px; } .sector h3 small { display: inline; margin-left: 10px; }
-    .cards { gap: 8px; } .card { padding: 10px 10px 9px; } .card .nm { font-size: 13px; } .card .meta { margin-top: 8px; font-size: 10.5px; } .keys { display: none; } }
+    .cards { gap: 8px; } .card { padding: 10px 10px 9px; } .card .nm { font-size: 13px; } .card .meta { margin-top: 8px; font-size: 10.5px; white-space: nowrap; }
+    .card .meta span:last-child { display: none; } .keys { display: none; } }
 
   /* ---------- panels ---------- */
   .panel { min-width: min(430px, 92vw); padding: 34px 38px 30px; border-radius: 22px; border: 1px solid var(--line); background: var(--glass);
@@ -109,9 +110,10 @@
   #touch button.down { background: color-mix(in srgb, var(--accent) 40%, transparent); border-color: var(--accent); }
   #tL { left: 18px; } #tR { left: 110px; } #tJ { right: 18px; width: 96px !important; height: 96px !important; font-size: 13px !important; letter-spacing: .2em; }
   #tB { right: 128px; width: 62px !important; height: 62px !important; font-size: 10px !important; letter-spacing: .15em; }
-  body.touch .corner { bottom: auto; top: 64px; }
+  body.touch.playing .corner { bottom: auto; top: 58px; right: 12px; }
   body.touch .hud-bottom { bottom: 14px; }
   body.touch #hint { bottom: 190px; }
+  @media (max-width: 720px) { .hud-top { padding: 12px 14px; grid-template-columns: auto 1fr auto; } .tiny { display: none; } }
 </style>
 </head>
 <body>

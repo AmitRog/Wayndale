@@ -40,6 +40,7 @@
     const playing = m === 'ready' || m === 'play' || m === 'dead' || m === 'won' || m === 'pause';
     show('title', m === 'title'); show('select', m === 'select'); show('pause', m === 'pause');
     show('result', m === 'won' && resultShown); show('hud', playing);
+    document.body.classList.toggle('playing', playing);
     show('bPause', m === 'ready' || m === 'play'); show('touch', touchMode && (m === 'ready' || m === 'play'));
     if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
     if (m === 'title') $('bStart').focus();
@@ -54,7 +55,7 @@
     gfx.clearParticles();
     $('banner').classList.remove('on');
     $('hint').style.opacity = 1;
-    $('hint').innerHTML = touchMode ? 'Tap <kbd>JUMP</kbd> or steer to launch' : 'Hold <kbd>&uarr;</kbd> to launch &nbsp;&middot;&nbsp; <kbd>Space</kbd> to jump';
+    $('hint').innerHTML = touchMode ? 'Tap any control to launch' : 'Hold <kbd>&uarr;</kbd> to launch &nbsp;&middot;&nbsp; <kbd>Space</kbd> to jump';
     setMode('ready');
   }
 
@@ -155,6 +156,7 @@
     input.throttle = d ? -1 : (u || touchMode) ? 1 : 0;
     input.jump = !!(keys.Space || keys.TJ);
   }
+  function launch() { if (mode === 'ready') { setMode('play'); $('hint').style.opacity = 0; } }
   const pause = () => { if (mode === 'play' || mode === 'ready') { setMode('pause'); SFX.engine(0, false); } };
   const resume = () => { if (mode === 'pause') { last = performance.now(); setMode(s.t > 0 ? 'play' : 'ready'); } };
   function toggleMute() { save.muted = !save.muted; SFX.setMuted(save.muted); $('bMute').style.opacity = save.muted ? 0.4 : 1; persist(); }
@@ -200,7 +202,7 @@
 
   for (const [id, key] of [['tL', 'TL'], ['tR', 'TR'], ['tJ', 'TJ'], ['tB', 'TB']]) {
     const el = $(id);
-    const set = on => e => { e.preventDefault(); keys[key] = on; el.classList.toggle('down', on); };
+    const set = on => e => { e.preventDefault(); keys[key] = on; el.classList.toggle('down', on); if (on) launch(); };
     el.addEventListener('pointerdown', set(true));
     for (const t of ['pointerup', 'pointercancel', 'pointerleave']) el.addEventListener(t, set(false));
   }
@@ -218,7 +220,7 @@
     requestAnimationFrame(frame);
     const dt = Math.min(0.05, Math.max(0.001, (now - last) / 1000)); last = now; clock += dt;
     readInput();
-    if (mode === 'ready' && (input.throttle > 0 && !touchMode || input.jump || input.steer || pilot)) { setMode('play'); $('hint').style.opacity = 0; }
+    if (input.throttle > 0 && !touchMode || input.jump || input.steer || pilot) launch();
     if (mode === 'play') {
       acc += dt; const ev = [];
       while (acc >= C.DT && s.status === 0) {
